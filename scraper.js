@@ -2,7 +2,7 @@ const fetch = require("node-fetch");
 const ObjectsToCsv = require("objects-to-csv");
 
 
-var settings = { method: "Get" };
+let settings = { method: "Get" };
 let params = {
     page: 1,
     limit: 250,
@@ -55,34 +55,31 @@ function groupByDateAndCountProducts(products) {
 
 
 const  getResults = () => {
-    let urlArray = ["https://fanjoy.co/products.json?" + query, "https://gymshark.com/products.json?" + query, "https://ca.ultamodan.com/products.json?" + query];
+    
+let urlArray = ["https://fanjoy.co/products.json?" + query, "https://gymshark.com/products.json?" + query, "https://ca.ultamodan.com/products.json?" + query];
    
-    urlArray.forEach ((url)=> {
-       
-        fetch(url, settings)
+    for (let i = 0; i < urlArray.length; i++) {
+        let jsonURL = urlArray[i];
+        fetch(jsonURL, settings)
             .then((res) => res.json())
             .then((JSONproductList) => {
              
                 const groupedProductsbyDate = groupByDateAndCountProducts(
                     JSONproductList.products
                 );
-              
+             
                 const groupedProductsbyType = groupByTypeAndCountProducts(
                     JSONproductList.products
                 );
-
+                console.log(groupedProductsbyType)
                 const csv_date = new ObjectsToCsv(groupedProductsbyDate);
-
-                csv_date.toDisk(`./products_by_date-${url.split('/')[2]}.csv`);
-
+                csv_date.toDisk(`./products_by_date-${urlArray[i].split('/')[2]}.csv`);
                 const csv_type = new ObjectsToCsv(groupedProductsbyType);
-
-                csv_type.toDisk(`./products_by_type-${url.split('/')[2]}.csv`);
+                csv_type.toDisk(`./products_by_type-${urlArray[i].split('/')[2]}.csv`);
 
                 return;
             });
-    })
-    
+    }
 };
 
 module.exports = getResults;

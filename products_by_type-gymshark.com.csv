@@ -1,6 +1,7 @@
 type,productCount
+Accessories,14
 Womens Pullover,2
-Womens Sports Bras,29
+Womens Sports Bras,28
 Mens Drop Armhole Tank,4
 Mens Shorts,32
 Womens Shorts,4
@@ -12,7 +13,6 @@ Mens Hoodie,18
 Mens Long Sleeve Top,8
 Mens Sweater,7
 Socks,9
-Accessories,12
 Mens T-Shirts,14
 Mens Bottoms,15
 ,2
@@ -26,4 +26,3 @@ Mens Underwear,1
 Womens Leggings,1
 Mens Leggings,2
 Womens Sports Bra,4
-Underwear,1

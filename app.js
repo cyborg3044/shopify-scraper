@@ -15,7 +15,7 @@ app.post('/schedule', function (req, res) {
 
 app.get('/scrap', async function(req, res){
    const result =getResults();
-   res.send(result)
+   res.send({key: 20})
 
 })
 
